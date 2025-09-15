@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李梦的19岁生日祝福</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B8B',
+                        secondary: '#FFD166',
+                        accent: '#06D6A0',
+                        dark: '#118AB2',
+                        light: '#F7F9FC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+            }
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            .animate-candle-flicker {
+                animation: flicker 2s infinite alternate;
+            }
+            .bg-pattern {
+                background-image: radial-gradient(#FF6B8B15 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light min-h-screen font-sans text-gray-800 overflow-x-hidden">
+    <!-- 页面容器 -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 1. 日期输入页面 -->
+        <section id="date-input" class="min-h-screen flex flex-col items-center justify-center py-12 transition-opacity duration-500">
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-primary mb-4 text-shadow-lg">生日快乐，李梦！</h1>
+                <p class="text-gray-600 text-lg max-w-md mx-auto">请输入今天的日期，开启你的19岁生日祝福</p>
+            </div>
+            
+            <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:shadow-2xl">
+                <form id="birthday-form" class="space-y-6">
+                    <div>
+                        <label for="birthday" class="block text-sm font-medium text-gray-700 mb-2">请输入日期</label>
+                        <input 
+                            type="date" 
+                            id="birthday" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                            required
+                        >
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                        <span>开启祝福</span>
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </form>
+                
+                <div class="mt-6 text-center text-gray-500 text-sm">
+                    <p>今天是李梦的19岁生日 (9.16)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 倒计时页面 -->
+        <section id="countdown" class="min-h-screen flex flex-col items-center justify-center py-12 hidden relative overflow-hidden bg-pattern">
+            <!-- 蛋糕背景 -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <!-- 蛋糕底座 -->
+                    <div class="absolute bottom-0 w-full h-24 bg-primary rounded-t-full"></div>
+                    <!-- 蛋糕中层 -->
+                    <div class="absolute bottom-16 left-8 right-8 h-20 bg-secondary rounded-t-full"></div>
+                    <!-- 蛋糕顶层 -->
+                    <div class="absolute bottom-32 left-16 right-16 h-16 bg-primary rounded-t-full"></div>
+                    <!-- 蜡烛 -->
+                    <div class="absolute bottom-48 left-1/2 transform -translate-x-1/2 w-4 h-12 bg-white rounded-t-md"></div>
+                    <!-- 火焰 -->
+                    <div class="absolute bottom-60 left-1/2 transform -translate-x-1/2 w-6 h-8 bg-secondary rounded-full animate-candle-flicker"></div>
+                </div>
+            </div>
+            
+            <div class="relative z-10 text-center">
+                <h2 class="text-[clamp(1.5rem,4vw,2.5rem)] font-bold text-dark mb-8 text-shadow">准备好接收祝福了吗？</h2>
+                
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-10 shadow-2xl max-w-md mx-auto">
+                    <p class="text-gray-600 mb-6">生日祝福即将开始</p>
+                    <div id="countdown-timer" class="text-[clamp(3rem,8vw,5rem)] font-bold text-primary mb-6">10</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="countdown-progress" class="bg-primary h-2.5 rounded-full w-full transition-all duration-1000"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 祝福页面 -->
+        <section id="birthday-wishes" class="min-h-screen py-16 hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(2rem,5vw,3rem)] font-bold text-primary mb-4 text-shadow-lg">生日快乐，李梦！</h2>
+                <p class="text-gray-600 text-xl">19岁的你，光芒万丈</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 mb-12 transform transition-all duration-500 hover:shadow-2xl">
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-lg leading-relaxed mb-6">
+                        亲爱的李梦，在这个特别的日子里，祝你19岁生日快乐！愿你每一天都充满阳光和欢笑，
+                        所有的梦想都能开花结果，所有的努力都能得到回报。19岁是人生中最美好的年纪之一，
+                        愿你勇敢探索，尽情体验，创造属于自己的精彩故事。
+                    </p>
+                    
+                    <div class="my-10 p-6 bg-primary/10 rounded-xl border-l-4 border-primary">
+                        <h3 class="text-xl font-semibold text-dark mb-4">生日祝福诗</h3>
+                        <div class="text-gray-700 italic space-y-2 text-center">
+                            <p>十九芳华正青春，李花初绽梦飞扬</p>
+                            <p>今朝华诞同欢庆，明朝前路更辉煌</p>
+                            <p>愿君常沐春风里，笑对人生万事昌</p>
+                            <p>岁岁今朝多喜乐，年年岁岁皆安康</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg leading-relaxed">
+                        愿你在新的一岁里，收获更多的知识、友谊和成长，成为更好的自己。我们都为你感到骄傲，
+                        期待看到你未来更加精彩的表现！
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="to-gift-btn" class="bg-accent hover:bg-accent/90 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg inline-flex items-center gap-2">
+                    <span>领取生日礼物</span>
+                    <i class="fa fa-gift"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. 礼物抽奖页面 -->
+        <section id="gift-draw" class="min-h-screen py-16 hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(2rem,5vw,3rem)] font-bold text-primary mb-4 text-shadow-lg">生日抽奖</h2>
+                <p class="text-gray-600 text-xl">试试你的运气，抽取一份特别的生日礼物吧！</p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 mb-10 text-center">
+                    <div id="gift-box" class="w-64 h-64 md:w-80 md:h-80 mx-auto mb-8 relative cursor-pointer transform transition-all duration-300 hover:scale-[1.03] animate-float">
+                        <!-- 礼物盒 -->
+                        <div class="absolute inset-0 bg-primary rounded-2xl"></div>
+                        <!-- 礼物盖 -->
+                        <div class="absolute top-0 left-0 right-0 h-16 bg-primary/80 rounded-t-2xl"></div>
+                        <!-- 丝带 -->
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-full bg-secondary"></div>
+                        <div class="absolute top-1/2 left-0 right-0 h-8 bg-secondary"></div>
+                        <!-- 装饰 -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                            <i class="fa fa-star text-white text-xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="gift-message" class="hidden">
+                        <h3 class="text-2xl font-bold text-dark mb-4">恭喜你！</h3>
+                        <p class="text-lg text-gray-600 mb-6">你抽到了一份特别的礼物：</p>
+                        <div class="p-6 bg-accent/10 rounded-xl border border-accent/30">
+                            <p id="gift-content" class="text-xl font-semibold text-dark"></p>
+                        </div>
+                    </div>
+                    
+                    <button id="redraw-btn" class="mt-8 bg-dark hover:bg-dark/90 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 hidden">
+                        再抽一次
+                    </button>
+                </div>
+                
+                <div class="text-center text-gray-500 text-sm">
+                    <p>祝李梦19岁生日快乐，永远幸福快乐！</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 页面元素
+        const dateInputSection = document.getElementById('date-input');
+        const countdownSection = document.getElementById('countdown');
+        const birthdayWishesSection = document.getElementById('birthday-wishes');
+        const giftDrawSection = document.getElementById('gift-draw');
+        const birthdayForm = document.getElementById('birthday-form');
+        const countdownTimer = document.getElementById('countdown-timer');
+        const countdownProgress = document.getElementById('countdown-progress');
+        const toGiftBtn = document.getElementById('to-gift-btn');
+        const giftBox = document.getElementById('gift-box');
+        const giftMessage = document.getElementById('gift-message');
+        const giftContent = document.getElementById('gift-content');
+        const redrawBtn = document.getElementById('redraw-btn');
+        
+        // 预设的生日日期 - 9月16日
+        const birthdayMonth = 8; // 月份从0开始计数，9月是8
+        const birthdayDay = 16;
+        
+        // 可能的礼物列表
+        const gifts = [
+            "一包薯片",
+            "一瓶李子园",
+            "一枚水豚噜噜玩偶",
+            "一杯奶茶"
+            "一个王者皮肤"
+        ];
+        
+        // 表单提交处理
+        birthdayForm.addEventListener('submit',function(e) {
+            e.preventDefault();
+            
+            const inputDate = new Date(document.getElementById('birthday').value);
+            const inputMonth = inputDate.getMonth();
+            const inputDay = inputDate.getDate();
+            
+            // 检查是否是生日（9月16日）
+            if (inputMonth === birthdayMonth && inputDay === birthdayDay) {
+                // 显示倒计时页面
+                dateInputSection.classList.add('opacity-0');
+                setTimeout(() => {
+                    dateInputSection.classList.add('hidden');
+                    countdownSection.classList.remove('hidden');
+                    startCountdown();
+                }, 500);
+            } else {
+                alert('请输入正确的生日日期（9月16日）以开启祝福！');
+            }
+        });
+        
+        // 倒计时功能
+        function startCountdown() {
+            let seconds = 10;
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownTimer.textContent = seconds;
+                countdownProgress.style.width = `${(seconds / 10) * 100}%`;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    // 显示祝福页面
+                    countdownSection.classList.add('hidden');
+                    birthdayWishesSection.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+        
+        // 前往礼物页面
+        toGiftBtn.addEventListener('click', function() {
+            birthdayWishesSection.classList.add('hidden');
+            giftDrawSection.classList.remove('hidden');
+        });
+        
+        // 礼物盒点击事件
+        giftBox.addEventListener('click', function() {
+            // 随机选择一个礼物
+            const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+            giftContent.textContent = randomGift;
+            
+            // 显示礼物信息，隐藏礼物盒
+            giftBox.classList.add('hidden');
+            giftMessage.classList.remove('hidden');
+            redrawBtn.classList.remove('hidden');
+        });
+        
+        // 再抽一次
+        redrawBtn.addEventListener('click', function() {
+            // 显示礼物盒，隐藏礼物信息
+            giftBox.classList.remove('hidden');
+            giftMessage.classList.add('hidden');
+            redrawBtn.classList.add('hidden');
+        });
+        
+        // 设置默认日期为生日（9月16日）
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const year = today.getFullYear();
+            // 设置默认日期为今年的9月16日
+            const defaultBirthday = `${year}-09-16`;
+            document.getElementById('birthday').value = defaultBirthday;
+        });
+    </script>
+</body>
+</html>
